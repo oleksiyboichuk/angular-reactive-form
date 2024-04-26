@@ -1,0 +1,78 @@
+<h1 class="main-text">Reactive Angular Form</h1>
+
+<div class="container">
+
+  <div class="table-block">
+    <table class="div-table">
+      <tr>
+        <td>
+          <table>
+            <thead>
+            <tr>
+              <th>№</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Додайте цикл для кожного користувача тут -->
+              @for (user of users; track user) {
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>
+                    <button class="primary-button" (click)="onEdit(user.id)">Edit</button>
+                  </td>
+                </tr>
+              }
+            <!-- Кінець циклу -->
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <form [formGroup]="userForm" (submit)="onSaveUser()">
+    <div class="row">
+      <div class="col-4">
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter Name...">
+        <label for="name">Name</label>
+<!--        <div class="danger-block">-->
+        <!--          @if (userForm.controls['name'].errors!['firstCharUppercase']) {-->
+        <!--            <span class="danger-text">Name Error (First Character Must Be Uppercase)</span>-->
+        <!--          }-->
+        <!--        </div>-->
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <input type="text" class="form-control" formControlName="username" id="username"
+               placeholder="Enter Username...">
+        <label for="username">User Name</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter Email...">
+        <label for="email">Email</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <button type="submit" class="btn-success">Save User</button>
+      </div>
+
+    </div>
+  </form>
+
+</div>

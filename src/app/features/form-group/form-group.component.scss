@@ -1,0 +1,138 @@
+.main-text {
+
+}
+
+.danger-text {
+  font-weight: 600;
+  color: #d9534f;
+}
+
+.primary-button {
+  cursor: pointer;
+  font-size: 12px;
+  border: none;
+  background: black;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+  text-transform: uppercase;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: #636951;
+  }
+
+  &:active {
+    background: #B99470;
+    color: black;
+  }
+}
+
+.container {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  .table-block {
+    margin-bottom: 25px;
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #e4eed6;
+    }
+
+    .div-table {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .div-table > div {
+      margin-bottom: 10px; /* Змініть значення за потребою */
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+
+    .col-6 {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+
+      .table {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .col-4 {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+
+
+      label {
+        color: #B5C18E;
+        opacity: 70%;
+      }
+
+      .form-control {
+        padding: 0.2rem 0.5rem;
+        transition: all 0.5s ease-in-out;
+        border: 2px solid #B5C18E;
+        border-radius: 0.1rem;
+
+        &:active {
+          border-radius: 0.1rem;
+        }
+
+        &:focus {
+          background-color: #f6ffdc;
+          border-radius: 0.1rem;
+        }
+      }
+
+      .btn-success {
+        border: none;
+        background: #B5C18E;
+        padding: 0.3rem 1.1rem;
+        border-radius: 0.2rem;
+        text-transform: uppercase;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background: #98a17b;
+        }
+
+        &:active {
+          background: #B99470;
+          color: black;
+        }
+      }
+    }
+  }
+
+
+}
+
+
+

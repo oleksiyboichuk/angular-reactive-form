@@ -1,4 +1,4 @@
-<h1 class="main-text">Reactive Angular Form</h1>
+<h1 class="main-text">Angular Reactive Form</h1>
 
 <div class="container">
 
@@ -8,28 +8,28 @@
         <td>
           <table>
             <thead>
-            <tr>
-              <th>№</th>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
+              <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-            <!-- Додайте цикл для кожного користувача тут -->
+              <!-- Додайте цикл для кожного користувача тут -->
               @for (user of users; track user) {
-                <tr>
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.username }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>
-                    <button class="primary-button" (click)="onEdit(user.id)">Edit</button>
-                  </td>
-                </tr>
+              <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <button class="primary-button" (click)="onEdit(user.id)">Edit</button>
+                </td>
+              </tr>
               }
-            <!-- Кінець циклу -->
+              <!-- Кінець циклу -->
             </tbody>
           </table>
         </td>
@@ -42,28 +42,32 @@
     <div class="row">
       <div class="col-4">
         <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter Name...">
-        <label for="name">Name</label>
-<!--        <div class="danger-block">-->
-        <!--          @if (userForm.controls['name'].errors!['firstCharUppercase']) {-->
-        <!--            <span class="danger-text">Name Error (First Character Must Be Uppercase)</span>-->
-        <!--          }-->
-        <!--        </div>-->
-
+        @if (userForm.controls['name'].hasError('required') && userForm.controls['name'].touched) {
+        <span class="danger-text">The field name is required</span>
+        }
       </div>
     </div>
 
     <div class="row">
       <div class="col-4">
         <input type="text" class="form-control" formControlName="username" id="username"
-               placeholder="Enter Username...">
-        <label for="username">User Name</label>
+          placeholder="Enter Username...">
+        @if (userForm.controls['username'].hasError('firstCharUppercase')) {
+        <span class="danger-text">
+          The field username is required
+        </span>
+        }
       </div>
     </div>
 
     <div class="row">
       <div class="col-4">
         <input type="text" class="form-control" formControlName="email" id="email" placeholder="Enter Email...">
-        <label for="email">Email</label>
+        @if (userForm.controls['email'].hasError('email') && userForm.controls['email'].touched) {
+        <span class="danger-text">
+          Email is not correct
+        </span>
+        }
       </div>
     </div>
 

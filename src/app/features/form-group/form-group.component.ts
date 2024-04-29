@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../models/user.model";
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { User } from "../models/user.model";
 
-// function firstCharUppercase(): ValidatorFn {
-//   return (control: AbstractControl): { [key: string]: any } | null => {
-//     const value = control.value as string;
-//     if (value && value.charAt(0) !== value.charAt(0).toUpperCase()) {
-//       return {firstCharNotUppercase: true};
-//     }
-//     return null;
-//   };
-// }
+function firstCharUppercase(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value as string;
+    if (!value || !/^[A-Z]/.test(value)) {
+      return { firstCharUppercase: true };
+    }
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-form-group',
@@ -25,11 +25,12 @@ import {User} from "../models/user.model";
 export class FormGroupComponent {
 
   users: User[] = [];
+  submitted = false;
 
   userForm: FormGroup = new FormGroup({
     id: new FormControl('0', [Validators.required, Validators.minLength(6)]),
     name: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6), firstCharUppercase()]),
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
@@ -57,6 +58,8 @@ export class FormGroupComponent {
   onSaveUser() {
     // debugger;
     const obj = this.userForm.value;
+    this.submitted = true;
+    console.log(this.userForm.controls['username'].errors)
 
     this.http.post('https://jsonplaceholder.typicode.com/users', obj)
       .subscribe((res: any) => {

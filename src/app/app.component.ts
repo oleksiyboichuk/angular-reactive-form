@@ -7,5 +7,5 @@ import {FormGroupComponent} from "./features/form-group/form-group.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  title = 'angular-17-reactive-form'
 }
